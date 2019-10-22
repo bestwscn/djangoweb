@@ -106,4 +106,16 @@ STATIC_ROOT = env('STATIC_ROOT', default=STORAGE_DIR('static'))
 
 
 ## third setting
+INSTALLED_APPS += [
+    'rest_framework',
+]
+
+### REST_FRAMEWORK
+REST_FRAMEWORK = {
+    # 时间格式
+    'DATETIME_FORMAT': '%Y-%m-%d %H:%M:%S',
+    # 分页实现类
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20
+}
 
