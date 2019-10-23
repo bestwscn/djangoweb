@@ -108,6 +108,7 @@ STATIC_ROOT = env('STATIC_ROOT', default=STORAGE_DIR('static'))
 ## third setting
 INSTALLED_APPS += [
     'rest_framework',
+    'django_oss_storage',
 ]
 
 ### REST_FRAMEWORK
@@ -119,3 +120,13 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 20
 }
 
+### OSS
+if env('OSS_ENABLE', default=False):
+    OSS_ACCESS_KEY_ID = env('OSS_ACCESS_KEY_ID')
+    OSS_ACCESS_KEY_SECRET = env('OSS_ACCESS_KEY_SECRET')
+    OSS_BUCKET_NAME = env('OSS_BUCKET_NAME')
+    OSS_BUCKET_URL = env('OSS_BUCKET_URL')
+    # Refer https://www.alibabacloud.com/help/zh/doc-detail/31837.htm for OSS Region & Endpoint
+    OSS_ENDPOINT = env('OSS_ENDPOINT')
+    STATICFILES_STORAGE = 'apps.rest.backends.OssStaticStorage'
+    # DEFAULT_FILE_STORAGE = 'apps.rest.backends.OssMediaPrivateStorage'

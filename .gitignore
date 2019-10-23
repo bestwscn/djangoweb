@@ -16,3 +16,4 @@ tests/report/
 *.sqlite3
 public
 *.env
+/docs/
