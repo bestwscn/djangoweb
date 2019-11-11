@@ -107,10 +107,25 @@ STATIC_ROOT = env('STATIC_ROOT', default=STORAGE_DIR('static'))
 
 ## third setting
 INSTALLED_APPS += [
+    'django.contrib.sites',
+    'django.contrib.flatpages',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # github 登陆
+    'allauth.socialaccount.providers.github',
     'rest_framework',
     'django_oss_storage',
 ]
 
+INSTALLED_APPS += [
+    'apps.myaccount',
+]
+###
+SITE_ID = 1
+MIDDLEWARE += [
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+]
 ### REST_FRAMEWORK
 REST_FRAMEWORK = {
     # 时间格式
