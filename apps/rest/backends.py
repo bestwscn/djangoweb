@@ -2,6 +2,8 @@ from urllib.parse import urljoin
 
 from django.conf import settings
 from django_oss_storage.backends import OssStorage
+
+
 class OssStaticStorage(OssStorage):
     def __init__(self):
         self.location = settings.STATIC_URL
@@ -10,7 +12,7 @@ class OssStaticStorage(OssStorage):
 
     def url(self, name, expire=None):
         key = self._get_key_name(name)
-        return urljoin(self.bucket_url,key)
+        return urljoin(self.bucket_url, key)
 
     def save(self, name, content, max_length=None):
         return super(OssStaticStorage, self)._save(name, content)

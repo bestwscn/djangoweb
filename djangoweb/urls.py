@@ -26,6 +26,7 @@ urlpatterns = [
     path('api/', include('apps.rest.urls')),
     path('accounts/', include('apps.myaccount.urls')),
     path('pages/', include('django.contrib.flatpages.urls')),
+    path('files/', include('filer.urls')),
 ]
 
 urlpatterns += [

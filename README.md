@@ -19,6 +19,4 @@ Django+Vue： build a personal website
 - [ ] api
   - [ ] 统一格式
   - [ ] 登录注册
-
-- [ ] blog博客
   

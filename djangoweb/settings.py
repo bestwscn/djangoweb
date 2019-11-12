@@ -104,7 +104,6 @@ MEDIA_ROOT = env('MEDIA_ROOT', default=STORAGE_DIR('media'))
 MEDIA_URL = env('MEDIA_URL', default='/media/')
 STATIC_ROOT = env('STATIC_ROOT', default=STORAGE_DIR('static'))
 
-
 ## third setting
 INSTALLED_APPS += [
     'django.contrib.sites',
@@ -116,6 +115,9 @@ INSTALLED_APPS += [
     'allauth.socialaccount.providers.github',
     'rest_framework',
     'django_oss_storage',
+    'easy_thumbnails',
+    'filer',
+    'mptt',
 ]
 
 INSTALLED_APPS += [
@@ -136,12 +138,24 @@ REST_FRAMEWORK = {
 }
 
 ### OSS
+
 if env('OSS_ENABLE', default=False):
     OSS_ACCESS_KEY_ID = env('OSS_ACCESS_KEY_ID')
     OSS_ACCESS_KEY_SECRET = env('OSS_ACCESS_KEY_SECRET')
     OSS_BUCKET_NAME = env('OSS_BUCKET_NAME')
     OSS_BUCKET_URL = env('OSS_BUCKET_URL')
-    # Refer https://www.alibabacloud.com/help/zh/doc-detail/31837.htm for OSS Region & Endpoint
     OSS_ENDPOINT = env('OSS_ENDPOINT')
     STATICFILES_STORAGE = 'apps.rest.backends.OssStaticStorage'
-    # DEFAULT_FILE_STORAGE = 'apps.rest.backends.OssMediaPrivateStorage'
+    DEFAULT_FILE_STORAGE = 'apps.rest.backends.OssMediaPublicStorage'
+
+### filer
+
+# THUMBNAIL_HIGH_RESOLUTION = True
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    'easy_thumbnails.processors.scale_and_crop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
+)
+FILER_CANONICAL_URL = 'sharing/'
