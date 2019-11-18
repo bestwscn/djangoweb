@@ -1,0 +1,33 @@
+{% load i18n static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
+<head>
+<title>{% block title %}{% endblock %}</title>
+{% block extrastyle %}{% endblock %}
+{% block extrahead %}{% endblock %}
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f79370131e73aee52be43a427944419a";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+{% load i18n %}
+<body>
+<!-- Container -->
+<div id="container">
+    <!-- Content -->
+    <div id="content">
+        {% block content %}
+        {{ content }}
+        {% endblock %}
+    </div>
+    <!-- END Content -->
+    {% block footer %}<div id="footer"></div>{% endblock %}
+</div>
+<!-- END Container -->
+</body>
+</html>
