@@ -115,9 +115,6 @@ INSTALLED_APPS += [
     'allauth.socialaccount.providers.github',
     'rest_framework',
     'django_oss_storage',
-    'easy_thumbnails',
-    'filer',
-    'mptt',
 ]
 
 INSTALLED_APPS += [
@@ -148,14 +145,3 @@ if env('OSS_ENABLE', default=False):
     STATICFILES_STORAGE = 'apps.rest.backends.OssStaticStorage'
     DEFAULT_FILE_STORAGE = 'apps.rest.backends.OssMediaPublicStorage'
 
-### filer
-
-# THUMBNAIL_HIGH_RESOLUTION = True
-THUMBNAIL_PROCESSORS = (
-    'easy_thumbnails.processors.colorspace',
-    'easy_thumbnails.processors.autocrop',
-    'easy_thumbnails.processors.scale_and_crop',
-    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
-    'easy_thumbnails.processors.filters',
-)
-FILER_CANONICAL_URL = 'sharing/'
