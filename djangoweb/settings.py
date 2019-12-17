@@ -119,6 +119,7 @@ INSTALLED_APPS += [
 
 INSTALLED_APPS += [
     'apps.myaccount',
+    'apps.blog',
 ]
 ###
 SITE_ID = 1
