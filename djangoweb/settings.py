@@ -146,3 +146,21 @@ if env('OSS_ENABLE', default=False):
     STATICFILES_STORAGE = 'apps.rest.backends.OssStaticStorage'
     DEFAULT_FILE_STORAGE = 'apps.rest.backends.OssMediaPublicStorage'
 
+### log
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console':{
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level':'DEBUG',
+        },
+    }
+}
