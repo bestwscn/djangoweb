@@ -65,7 +65,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'djangoweb.wsgi.application'
-
+SECURE_SSL_REDIRECT = not env('DEBUG', default=True)
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 DATABASES = {
